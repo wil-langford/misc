@@ -1,0 +1,22 @@
+This turned out to be useful for only a couple of weeks, after which the sheer
+number of cases made it impractical and a more theoretic approach had to be
+employed.
+
+This originally had its own repository, but I tarred up the .git directory and
+moved its contents to my Misc repository.
+
+=========
+
+I'm writing the AlgebraicTable module to ease some of the more tedious aspects
+of abstract algebra this term.  It's not meant to be very fast or very good.
+If you decide to use it, be aware that I'm not going for anything polished.
+It's quick and dirty.
+
+I started tinkering with algebra in python last week.  This is an
+object-oriented port of that effort.
+
+Right now it is just a module.  There's nothing to run at the command line.  If
+you want to use it, you must know how to code in Python.  I recommend using
+IDLE or iPython, importing the module, and working with it there.
+
+Wil Langford, 2012-04-08
