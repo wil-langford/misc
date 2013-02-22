@@ -33,4 +33,5 @@ if has("autocmd")
 endif
 
 set foldmethod=indent
-set foldlevel=99
+set foldnestmax=2
+set foldlevel=1
