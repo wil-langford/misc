@@ -25,7 +25,7 @@ set smarttab
 set expandtab
 set softtabstop=4
 
-set guifont=DejaVu\ Sans\ Mono:h15
+set guifont=Neep\ Medium\ Semicondensed\ 12
 
 if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
@@ -35,3 +35,5 @@ endif
 set foldmethod=indent
 set foldnestmax=2
 set foldlevel=1
+
+colorscheme peachpuff
