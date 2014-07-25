@@ -9,7 +9,7 @@ import os
 import os.path as path
 import sys
 import time
-
+import shutil
 
 DEFAULT_NUM_TO_KEEP=10
 DEFAULT_MINIMUM_AGE_IN_DAYS=3
@@ -30,20 +30,30 @@ class VerbosePrinter(object):
             print(*args, **kwargs)
 
 class Pruner(object):
-    def __init__(self, TEST_RUN, verbose_printer=None, verbose=False):
+    def __init__(self, TEST_RUN, verbose_printer=None, verbose=False, dest_dir=None):
         self._test_run = TEST_RUN
         if verbose_printer is None:
             self._vp=VerbosePrinter(verbose)
         else:
             self._vp=verbose_printer
+        self._dest_dir = dest_dir
 
     def __call__(self, full_path):
         if not self._test_run:
-            os.remove(full_path)
-            self._vp("Removed file: {}".format(full_path))
+            if self._dest_dir is None:
+                os.remove(full_path)
+                self._vp("Deleted file: {}".format(full_path))
+            else:
+                shutil.move(full_path, self._dest_dir)
+                self._vp("Moved file: {}".format(full_path))
         else:
-            self._vp("TEST RUN: Would have removed file: " +
-                     "{}".format(full_path))
+            if self._dest_dir is None:
+                self._vp("TEST RUN: Would have DELETED file: " +
+                         "{}".format(full_path))
+            else:
+                self._vp("TEST RUN: Would have MOVED file: " +
+                         "{}".format(full_path))
+
 
 
 def main():
@@ -117,9 +127,6 @@ def main():
     TEST = args.test_run
     EXT = args.extension
 
-    vp = VerbosePrinter(args.verbose)
-    prune = Pruner(TEST, verbose_printer=vp)
-
     if not path.isdir(DIR):
         raise Exception("You must specify a directory to prune.")
 
@@ -138,6 +145,9 @@ def main():
         LEXT = len(EXT)
     else:
         LEXT = 0
+
+    vp = VerbosePrinter(args.verbose or TEST)
+    prune = Pruner(TEST, verbose_printer=vp, dest_dir=DEST)
 
     vp("Getting list of files in directory.")
 
