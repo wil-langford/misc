@@ -1,0 +1,37 @@
+div.text_cell_render code{
+    font-size: 16pt;
+}
+
+div.text_cell_render h1 {
+    font-size: 40pt;
+}
+
+div.text_cell_render h2 {
+    font-size: 32pt;
+}
+
+div.text_cell_render h3 {
+    font-size: 24pt;
+}
+
+p {
+    font-size: 18pt;
+    line-height: 110%;
+}
+
+li {
+    font-size: 18pt;
+    line-height: 110%;
+}
+
+div.CodeMirror-code {
+    font-size: 18pt;
+    line-height: 110%;
+}
+
+div.code_cell {
+    max-width: 95%;
+}
+div.text_cell {
+    max-width: 95%;
+}
