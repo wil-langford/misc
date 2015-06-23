@@ -44,7 +44,7 @@ class HorribleShell(cmd.Cmd):
         if not new_dir:
             raise Exception("Invalid directory: '{}'".format(new_dir))
 
-        print "New directory is: "
+        print "Current directory is: ", new_dir
         self._work_dir = new_dir
 
     def do_help(self, arg):
